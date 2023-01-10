@@ -1,0 +1,24 @@
+pipeline {
+  agent any
+  environment {
+    dotnet = 'C:\\Program Files\\dotnet\\dotnet.exe'
+  }
+  stages {
+    stage('Checkout Stage') {
+      steps {
+
+        git credentialsId: '4c8f9030-3ab3-4eb2-815e-7efdfa356d8c', url:'https://github.com/geethakrishna1414/Jenkins'
+      }
+    }
+    stage('Build Stage') {
+      steps {
+        bat 'dotnet build'
+      }
+    }
+    stage('Test Stage') {
+      steps {
+        echo "Application tested"
+      }
+    }
+  }
+}
